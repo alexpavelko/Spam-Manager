@@ -1,0 +1,72 @@
+﻿<Window x:Class="Email_Spammer.WindowMessage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:Email_Spammer"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen"
+        Title="WindowMessage" Height="450" Width="636.015">
+    <Window.Resources>
+        <Style TargetType="TextBox" x:Key="TextBoxStyle">
+            <Setter Property="FontSize" Value="14"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Grid x:Name="root" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}" SnapsToDevicePixels="true">
+                            <Border x:Name="Background" BorderThickness="0,0,0,1" CornerRadius="3" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"/>
+                            <ScrollViewer x:Name="PART_ContentHost"
+                   Padding="{TemplateBinding Padding}"
+                   BorderThickness="0" 
+                   IsTabStop="False" 
+                   Background="{x:Null}"
+                   TextElement.Foreground="{TemplateBinding Foreground}"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter Property="Background" Value="#FFE3F2FD"/>
+                                <Setter Property="BorderBrush" Value="#64B5F6"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="#F5F5F5"/>
+                                <Setter Property="BorderBrush" Value="#9E9E9E"/>
+                            </Trigger>
+                            <Trigger Property="IsReadOnly" Value="True">
+                                <Setter Property="Foreground" Value="#606060"/>
+                                <Setter Property="Background" Value="#F5F5F5"/>
+                                <Setter Property="BorderBrush" Value="#9E9E9E"/>
+                            </Trigger>
+                            <Trigger Property="Validation.HasError" Value="True">
+                                <Setter Property="Background" Value="#FFEBEE"/>
+                                <Setter Property="BorderBrush" Value="#F44336"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <StackPanel>
+            <TextBox x:Name="textBoxAdress" Margin="67,20,74,0" Style="{StaticResource TextBoxStyle}" TextChanged="TextBoxAdress_TextChanged"/>
+            <TextBlock Text="Whom" Margin="10,-17,563,0" Height="20"   HorizontalAlignment="Left" Style="{x:Null}"/>
+            <Button x:Name="buttonRecentContacts" Content="..." Margin="570,-20,10,0" Click="ButtonRecentContacts_Click"/>
+            <TextBox x:Name="textBoxSubject" Margin="67,10,74,0"  Style="{StaticResource TextBoxStyle}"/>
+            <TextBlock Text="Subject" Margin="10,-17,0,0" Height="22" HorizontalAlignment="Left" Style="{x:Null}" Width="52" />
+        </StackPanel>
+        <Button  x:Name="buttonSave" Content="Save" HorizontalAlignment="Left" VerticalAlignment="Top" Width="88" Margin="56,363,0,0" Click="ButtonSave_Click"/>
+        <Button  x:Name="buttonAddFile" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="175,363,0,0" Click="ButtonAddFile_Click" >
+            <materialDesign:PackIcon Kind="attachfile" />
+        </Button>
+        <RichTextBox x:Name="richTextBox" HorizontalAlignment="Left" Height="231" VerticalAlignment="Top" Width="499" Margin="56,108,0,0"  BorderThickness=" 1 1 1 1" BorderBrush="#89ADABB3">
+            <RichTextBox.ToolTip>
+                <ToolTip Background="#60464545" Foreground="White" HasDropShadow="False"
+                Placement="Relative" HorizontalOffset="380" VerticalOffset="10">
+                    <StackPanel>
+                        <TextBlock>Paste HTML into me</TextBlock>
+                    </StackPanel>
+                </ToolTip>
+            </RichTextBox.ToolTip>
+        </RichTextBox>
+    </Grid>
+</Window>
